@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Adriatic Awaits | June 8–15</title>
+  <meta name="description" content="Split to Dubrovnik — a private catamaran week aboard SINATA." />
+
+  <!-- Fonts (Google Fonts). If you host this offline/air-gapped, consider downloading the fonts locally. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0b1b2b;
+      --ocean: #0c3b57;
+      --ocean2: #0a2a3c;
+      --foam: #f7fbff;
+      --linen: #f5f1e8;
+      --sand: #e7ddc8;
+      --brass: #c7a25a;
+      --muted: rgba(11,27,43,.72);
+      --card: rgba(255,255,255,.78);
+      --shadow: 0 18px 55px rgba(0,0,0,.18);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1200px 900px at 20% 20%, rgba(255,255,255,.22), transparent 60%),
+                  radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,.14), transparent 55%),
+                  linear-gradient(180deg, var(--ocean2), var(--ocean));
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    /* Subtle wave texture using pure CSS */
+    .waves {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.35) 0 2px, transparent 3px 100%),
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.25) 0 2px, transparent 3px 100%),
+        radial-gradient(circle at 85% 65%, rgba(255,255,255,.25) 0 2px, transparent 3px 100%);
+      filter: blur(.2px);
+      transform: translateZ(0);
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 44px 18px 70px;
+      position: relative;
+    }
+
+    header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 28px;
+    }
+
+    .crest {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 10px 28px rgba(0,0,0,.20);
+    }
+    .crest svg { width: 24px; height: 24px; fill: rgba(255,255,255,.9); }
+
+    .hero {
+      text-align: center;
+      color: var(--foam);
+      padding: 26px 18px 12px;
+    }
+
+    .kicker {
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: 12px;
+      opacity: .85;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(44px, 6vw, 68px);
+      line-height: .95;
+      margin: 12px 0 12px;
+    }
+
+    .sub {
+      font-size: 16px;
+      opacity: .92;
+      margin: 0;
+    }
+
+    .divider {
+      width: 92px;
+      height: 2px;
+      margin: 22px auto 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent);
+      border-radius: 2px;
+    }
+
+    .card {
+      margin: 26px auto 0;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.30);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-inner {
+      padding: 26px 22px;
+    }
+
+    .lead {
+      font-size: 18px;
+      margin: 0 0 18px;
+      color: rgba(11,27,43,.92);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 760px) {
+      .grid { grid-template-columns: 1.1fr .9fr; gap: 18px; }
+    }
+
+    h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      font-size: 28px;
+      margin: 0 0 10px;
+      color: rgba(11,27,43,.95);
+    }
+
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+    }
+
+    li { margin: 6px 0; }
+
+    .route {
+      background: linear-gradient(180deg, rgba(231,221,200,.55), rgba(255,255,255,.0));
+      border: 1px solid rgba(199,162,90,.26);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+    }
+
+    .route .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(11,27,43,.78);
+    }
+
+    .route .tag span {
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: var(--brass);
+      display: inline-block;
+    }
+
+    .route .stops {
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+      color: rgba(11,27,43,.78);
+    }
+
+    .stop {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px dashed rgba(11,27,43,.18);
+      padding-bottom: 6px;
+    }
+    .stop:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .stop b {
+      color: rgba(11,27,43,.92);
+      font-weight: 600;
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 0 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 12px 18px;
+      text-decoration: none;
+      color: var(--foam);
+      background: linear-gradient(180deg, #1a5f82, #0f3f5c);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 12px 24px rgba(0,0,0,.22);
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0px); }
+
+    .btn svg { width: 18px; height: 18px; fill: rgba(255,255,255,.92); }
+
+    .fine {
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      text-align: center;
+      margin-top: 18px;
+      opacity: .95;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      opacity: .92;
+    }
+
+    .sig {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(255,255,255,.92);
+    }
+
+    /* Small "nautical chart" line art */
+    .chart {
+      height: 78px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(180deg, rgba(255,255,255,.10) 1px, transparent 1px) 0 0 / 22px 22px;
+      opacity: .55;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="waves"></div>
+
+  <div class="wrap">
+    <header aria-label="Site header">
+      <div class="crest" aria-hidden="true" title="SINATA">
+        <!-- Simple sail icon -->
+        <svg viewBox="0 0 24 24" role="img" aria-label="Sail">
+          <path d="M12 2c4 4.6 6 9.5 6.6 14.6.1.8-.5 1.4-1.3 1.4H7.2c-.8 0-1.4-.7-1.3-1.4C6.6 11.5 8.5 6.6 12 2Zm0 3.1c-2.3 3.2-3.8 6.7-4.6 10.6h9.2C15.8 11.8 14.3 8.3 12 5.1ZM4 20h16v2H4v-2Z"/>
+        </svg>
+      </div>
+
+      <div class="sig">SINATA</div>
+    </header>
+
+    <section class="hero">
+      <div class="kicker">June 8–15 • 2026</div>
+      <h1>The Adriatic Awaits</h1>
+      <p class="sub">Split → Dubrovnik • Private Catamaran with Crew</p>
+      <div class="divider"></div>
+    </section>
+
+    <div class="card" role="main">
+      <div class="chart" aria-hidden="true"></div>
+      <div class="card-inner">
+        <p class="lead">
+          This summer, the Garrisons and Boorjians will experience Croatia the way it was meant to be seen<br>
+           — <b>by sea</b>.
+        </p>
+
+        <div class="grid">
+          <section>
+            <h2>The Journey</h2>
+            <p>
+              Set sail on our private 60' Sunreef catamaran yacht, with a dedicated crew, for a week sailing the Dalmatian Coast.
+            </p>
+            <p>
+              Each day, a new island adventure!
+            </p>
+
+            <h2 style="margin-top:18px;">Life On Board</h2>
+            <ul>
+              <li>Wake up to your private breakfast</li>
+              <li>Sail to your next destination</li>
+              <li>Enjoy paddle boarding & snorkeling in clear Adriatic water</li>
+              <li>Experience olive oil tasting & a local winery</li>
+              <li>Explore old fortifications, island towns, and hidden coves</li>
+              <li>Savor dinners together</li>
+              <li>Swim straight off the boat</li>
+            </ul>
+          </section>
+
+          <aside class="route">
+            <div class="tag"><span></span> Our Route</div>
+            <div class="stops" aria-label="Route stops">
+              <div class="stop"><b>Split</b> <span>Start</span></div>
+              <div class="stop"><b>Brač</b> <span>Olive groves & blue water</span></div>
+              <div class="stop"><b>Hvar</b> <span>Historic walls & island energy</span></div>
+              <div class="stop"><b>Vis</b> <span>Hidden coves & quiet beauty</span></div>
+              <div class="stop"><b>Mljet</b> <span>Forests, salt lakes & stillness</span></div>
+              <div class="stop"><b>Dubrovnik</b> <span>Finish</span></div>
+            </div>
+
+            <div class="cta">
+              <div style="text-align:center;">
+                <div style="font-family:'Cormorant Garamond', Georgia, serif; font-size:30px; font-weight:600; color: rgba(11,27,43,.94);">
+                  Welcome aboard
+                </div>
+                <div style="letter-spacing:.18em; text-transform:uppercase; font-size:12px; color: rgba(11,27,43,.70); margin-top:4px;">
+                  SINATA
+                </div>
+              </div>
+
+              <a class="btn" href="https://www.cyaeb.com/3989/dhoh/crn/10105/" target="_blank" rel="noopener noreferrer" aria-label="Meet the yacht">
+                Meet the Yacht
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4 9.3-9.3H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                </svg>
+              </a>
+
+              <div style="font-size:12px; color: rgba(11,27,43,.64); text-align:center; max-width: 320px;">
+                No schedules. No crowds. Just time together.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <div class="fine">
+      Tip: If you arrived here from a QR code, save this page to your phone’s home screen — it’ll feel like an invitation.
+    </div>
+
+    <footer>
+      <div style="margin-top:10px;">Split • Brač • Hvar • Vis • Mljet • Dubrovnik</div>
+    </footer>
+  </div>
+</body>
+</html>
