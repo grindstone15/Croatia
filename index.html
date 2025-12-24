@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Leaflet (OpenStreetMap) for free interactive maps (no API key) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+
   <style>
     :root {
       --ink: #0b1b2b;
@@ -274,6 +278,19 @@
         linear-gradient(180deg, rgba(255,255,255,.10) 1px, transparent 1px) 0 0 / 22px 22px;
       opacity: .55;
     }
+  
+    /* Free route map (Leaflet + OpenStreetMap tiles) */
+    .map-wrap{
+      grid-column: 1 / -1;      /* span full width of the grid */
+      width: 100%;
+      margin-top: 22px;
+      border-top: 1px solid rgba(11,27,43,.18);
+    }
+    #route-map{
+      width: 100%;
+      height: 360px;            /* adjust as desired */
+    }
+
   </style>
 </head>
 
@@ -303,7 +320,7 @@
       <div class="chart" aria-hidden="true"></div>
       <div class="card-inner">
         <p class="lead">
-          This summer, the Garrisons and Boorjians will experience Croatia the way it was meant to be seen<br>
+          This summer, the <i>Garrisons</i> and <i>Boorjians</i> will experience Croatia the way it was meant to be seen<br>
            — <b>by sea</b>.
         </p>
 
@@ -334,8 +351,9 @@
             <div class="stops" aria-label="Route stops">
               <div class="stop"><b>Split</b> <span>Start</span></div>
               <div class="stop"><b>Brač</b> <span>Olive groves & blue water</span></div>
-              <div class="stop"><b>Hvar</b> <span>Historic walls & island energy</span></div>
+              <div class="stop"><b>Hvar</b> <span>Island energy & historic walls</span></div>
               <div class="stop"><b>Vis</b> <span>Hidden coves & quiet beauty</span></div>
+              <div class="stop"><b>Korcula</b> <span>Medieval streets & old town charm</span></div>
               <div class="stop"><b>Mljet</b> <span>Forests, salt lakes & stillness</span></div>
               <div class="stop"><b>Dubrovnik</b> <span>Finish</span></div>
             </div>
@@ -364,7 +382,13 @@
           </aside>
         </div>
       </div>
+
+      <div class="map-wrap" aria-label="Route map">
+        <div id="route-map" role="img" aria-label="Map showing Split and Dubrovnik Harbor"></div>
+      </div>
     </div>
+
+  
 
     <div class="fine">
       Tip: If you arrived here from a QR code, save this page to your phone’s home screen — it’ll feel like an invitation.
@@ -374,5 +398,40 @@
       <div style="margin-top:10px;">Split • Brač • Hvar • Vis • Mljet • Dubrovnik</div>
     </footer>
   </div>
+
+  <!-- Leaflet JS (no API key) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+    // Coordinates:
+    // - Split-ish reference point: 43°30'N, 16°26'E
+    // - Dubrovnik Harbor (Old Port): approx. 42.6413, 18.1091
+    (function () {
+      const split = [43.5, 16.4333333];
+      const dubrovnikHarbor = [42.6413, 18.1091];
+
+      const map = L.map('route-map', {
+        scrollWheelZoom: false,
+        dragging: true
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      L.marker(split).addTo(map).bindPopup("43°30′N, 16°26′E");
+      L.marker(dubrovnikHarbor).addTo(map).bindPopup("Dubrovnik Harbor");
+
+      // Fit the map so both markers are visible, with some padding
+      const bounds = L.latLngBounds([split, dubrovnikHarbor]).pad(0.25);
+      map.fitBounds(bounds);
+
+      // If you prefer a fixed zoom instead of fitBounds, comment the fitBounds above and use:
+      // map.setView(split, 9);
+    })();
+  </script>
+
 </body>
 </html>
